@@ -1,11 +1,30 @@
+/*Body styling*/
 body {
-  background: red;
+  background: #FFF;
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
 }
-
+/*Header styling*/
 header, section {
   text-align: center;
 }
 
+header {
+  background: #2f4254;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  margin: 0;
+  padding: 15px 0;
+  color: #ed5a64;
+}
+
+header span {
+  font-weight: 300;
+  color: #1abc9c;
+}
+/*Section styling*/
 section {
   width: 50%;
   margin: 0 auto;
@@ -13,13 +32,54 @@ section {
 
 #numberGuess {
   width: 65%;
+  height: 25px;
+  color: #1abc9c;
+  font-size: 20px;
+  border-radius: 4px;
+  border: 1px solid #34495e;
+  padding: 2px 5px;
+  outline: transparent
 }
 
 .buttons button {
   width: 32%;
+  height: 25px;
+  color: #34495e;
+  background: white;
+  border: 2px solid #34495e;
+  border-radius: 4px;
   margin: 15px 5px;
+  cursor: pointer;
+}
+
+#lastGuessNumber {
+  margin 0;
+  color: #ed5a64;
+  margin: 20px 0;
 }
 
 #resetBtn {
   width: 70%;
+  height: 25px;
+  color: #34495e;
+  background: white;
+  border: 2px solid #34495e;
+  border-radius: 4px;
+  margin: 15px 5px;
+  cursor: pointer;
+}
+
+#resetBtn:disabled, button:disabled {
+  color: #D0D2D3;
+  border-color: #D0D2D3;
+}
+
+/*Classes to toggle when game is won*/
+.boom {
+   margin: 10px 0 0 0;
+   font-size: 5em;
+}
+.normalText {
+   font-size: 1.5em;
+   margin: 18px 0;
 }
