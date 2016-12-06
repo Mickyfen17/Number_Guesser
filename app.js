@@ -71,6 +71,7 @@ guessBtn.addEventListener("click", function() {
   if (userNumber === randomNumber) {
     console.log("BOOM!");
     guessText.innerText = "BOOM!";
+    lastGuessNumber.innerText = userNumber;
     guessBtn.disabled = true;
   } else if (userNumber > randomNumber) {
     console.log("That is too high");
