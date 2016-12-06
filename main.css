@@ -41,6 +41,11 @@ section {
   outline: transparent
 }
 
+#numberGuess:focus::-webkit-input-placeholder { 
+  color:transparent;
+}
+
+
 .buttons button {
   width: 32%;
   height: 25px;
