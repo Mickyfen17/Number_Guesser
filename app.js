@@ -33,6 +33,11 @@ clearBtn.addEventListener("click", function() {
   disableClearBtn();
 });
 
+// Function to disable clear btn when input is empty
+numberGuessInput.addEventListener("keyup", function() {
+  disableClearBtn();
+});
+
 // Load random number on page load
 window.onload = function() {
   randomNumber = Math.ceil(Math.random() * 100);
