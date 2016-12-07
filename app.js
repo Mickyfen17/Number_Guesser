@@ -12,16 +12,30 @@ var randomNumber;
 var maxNum;
 var minNum;
 resetBtn.disabled = true;
-
-submitRangeBtn.addEventListener("click", function() {
-  minNum = minNumRange.value;
-  maxNum = maxNumRange.value;
-
-  console.log("Submit clicked " + minNum + " " + maxNum);
-});
-
+numberGuessInput.disabled = false;
 
 // HELPER FUNCTIONS
+// Function set new game
+function setGame() {
+  minNum = parseInt(minNumRange.value);
+  maxNum = parseInt(maxNumRange.value);
+  randomNumber = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
+  guessText.className = "normalText";
+  lastGuessNumber.innerText = "Take a guess...";
+  numberGuessInput.value = "";
+  lastGuessNumber.style.color = "#ed5a64";
+  // typeOfInput();
+  // textVisible();
+  // disableClearBtn();
+  resetBtn.disabled = true;
+  guessBtn.disabled = false;
+  numberGuessInput.disabled = false;
+  typeOfInput();
+  textVisible();
+  disableClearBtn();
+  console.log("Min:" + minNum + " Max:" + maxNum + " Random:" + randomNumber);
+}
+
 // Function to hide text on load and reset
 function textVisible() {
   if(guessText.style.visibility === "hidden" && lastGuessWas.style.visibility === "hidden") {
@@ -45,6 +59,7 @@ function disableClearBtn() {
 function boom() {
   guessText.innerText = "BOOM!";
   guessText.className = "boom";
+  numberGuessInput.disabled = true;
 }
 
 // Function to set text size depending on guess inner test
@@ -59,11 +74,13 @@ function typeOfInput() {
 // ONLOAD FUNCTION
 // Load random number and style page on load/refresh
 window.onload = function() {
-  randomNumber = Math.ceil(Math.random() * 100);
+  minNum = parseInt(minNumRange.value);
+  maxNum = parseInt(maxNumRange.value);
+  randomNumber = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
   textVisible();
   disableClearBtn();
   typeOfInput();
-  console.log(randomNumber);
+  console.log("Min:" + minNum + " Max:" + maxNum + " Random:" + randomNumber);
 };
 
 // EVENT LISTENER FUNCTIONS
@@ -72,7 +89,7 @@ guessBtn.addEventListener("click", function() {
   var userNumber = parseInt(numberGuessInput.value);
   if(numberGuessInput.value === "") {
     return alert("Error: Valid Number Required");
-  } else if(userNumber < 1 || userNumber > 100) {
+  } else if(userNumber < minNum || userNumber > maxNum) {
     return alert("Please enter a number between 1 & 100");
   }
   lastGuessNumber.innerText = userNumber;
@@ -101,17 +118,12 @@ clearBtn.addEventListener("click", function() {
 
 // Reset button function
 resetBtn.addEventListener("click", function() {
-  randomNumber = Math.ceil(Math.random() * 100);
-  guessText.className = "normalText";
-  lastGuessNumber.innerText = "Take a guess...";
-  numberGuessInput.value = "";
-  lastGuessNumber.style.color = "#ed5a64";
-  typeOfInput();
-  textVisible();
-  disableClearBtn();
-  resetBtn.disabled = true;
-  guessBtn.disabled = false;
-  console.log(randomNumber);
+  setGame();
+});
+
+// Submit button function
+submitRangeBtn.addEventListener("click", function() {
+  setGame();
 });
 
 // Function to disable clear btn when input is empty
