@@ -13,12 +13,21 @@ var maxNum;
 var minNum;
 resetBtn.disabled = true;
 numberGuessInput.disabled = false;
+var whichReset; //logs whether reset or submit was clicked
 
 // HELPER FUNCTIONS
 // Function set new game
 function setGame() {
-  minNum = parseInt(minNumRange.value);
-  maxNum = parseInt(maxNumRange.value);
+  console.log(whichReset);
+  if(whichReset === "resetBtn") {
+      minNum = 1;
+      maxNum = 100;
+  } else {
+      minNum = parseInt(minNumRange.value);
+      maxNum = parseInt(maxNumRange.value);
+  }
+  minNumRange.value = minNum;
+  maxNumRange.value = maxNum;
   numberGuessInput.min = minNum;
   numberGuessInput.max = maxNum;
   randomNumber = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
@@ -26,9 +35,6 @@ function setGame() {
   lastGuessNumber.innerText = "Take a guess between " + minNum + " & " + maxNum;
   numberGuessInput.value = "";
   lastGuessNumber.style.color = "black";
-  // typeOfInput();
-  // textVisible();
-  // disableClearBtn();
   resetBtn.disabled = true;
   guessBtn.disabled = false;
   numberGuessInput.disabled = false;
@@ -123,12 +129,14 @@ clearBtn.addEventListener("click", function() {
 });
 
 // Reset button function
-resetBtn.addEventListener("click", function() {
+resetBtn.addEventListener("click", function(e) {
+  whichReset = e.target.id;
   setGame();
 });
 
 // Submit button function
-submitRangeBtn.addEventListener("click", function() {
+submitRangeBtn.addEventListener("click", function(e) {
+  whichReset = e.target.id;
   setGame();
   if(lastGuessNumber.innerText.search("Take") !== -1) {
     guessText.style.visibility = "hidden";
@@ -142,7 +150,7 @@ numberGuessInput.addEventListener("keyup", function() {
 });
 
 // Style input and buttons
-// Reset game to reset range
+// Reset game to reset range DONE
 // Display numbers to guess between DONE
 // include instructions for min max range
 // Take a guess text to be black???  DONE
