@@ -95,7 +95,7 @@ window.onload = function() {
 // Guess button function
 guessBtn.addEventListener("click", function() {
   var userNumber = parseInt(numberGuessInput.value);
-  if(numberGuessInput.value === "") {
+  if(isNaN(userNumber)) {
     return alert("Error: Valid Number Required");
   } else if(userNumber < minNum || userNumber > maxNum) {
     return alert("Please enter a number between " + minNum + " & " + maxNum);
