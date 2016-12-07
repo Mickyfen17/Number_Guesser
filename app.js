@@ -138,3 +138,9 @@ submitRangeBtn.addEventListener("click", function() {
 numberGuessInput.addEventListener("keyup", function() {
   disableClearBtn();
 });
+
+// Style input and buttons
+// Reset game to reset range
+// Display numbers to guess between
+// include instructions for min max range
+// Take a guess text to be black???
