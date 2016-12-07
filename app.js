@@ -8,7 +8,8 @@ var lastGuessWas = document.getElementById("lastGuessWas");
 var randomNumber;
 resetBtn.disabled = true;
 
-// Helper funtion to hide text on load and reset
+// HELPER FUNCTIONS
+// Function to hide text on load and reset
 function textVisible() {
   if(guessText.style.visibility === "hidden" && lastGuessWas.style.visibility === "hidden") {
     guessText.style.visibility = "visible";
@@ -19,7 +20,7 @@ function textVisible() {
   }
 }
 
-// Disable clearBtn helper function
+// Function to toggle/disable clearBtn
 function disableClearBtn() {
   clearBtn.disabled = false;
   if(numberGuessInput.value === "") {
@@ -27,18 +28,23 @@ function disableClearBtn() {
   }
 }
 
-// Clear button function
-clearBtn.addEventListener("click", function() {
-  numberGuessInput.value = "";
-  disableClearBtn();
-});
+// Function to add boom class when answer is correct
+function boom() {
+  guessText.innerText = "BOOM!";
+  guessText.className = "boom";
+}
 
-// Function to disable clear btn when input is empty
-numberGuessInput.addEventListener("keyup", function() {
-  disableClearBtn();
-});
+// Function to set text size depending on guess inner test
+function typeOfInput() {
+  if(lastGuessNumber.innerText === "Take a guess...") {
+    lastGuessNumber.style.fontSize = "2em";
+  } else {
+    lastGuessNumber.style.fontSize = "7em";
+  }
+}
 
-// Load random number on page load
+// ONLOAD FUNCTION
+// Load random number and style page on load/refresh
 window.onload = function() {
   randomNumber = Math.ceil(Math.random() * 100);
   textVisible();
@@ -47,7 +53,40 @@ window.onload = function() {
   console.log(randomNumber);
 };
 
-// Load random number on reset
+// EVENT LISTENER FUNCTIONS
+// Guess button function
+guessBtn.addEventListener("click", function() {
+  var userNumber = parseInt(numberGuessInput.value);
+  if(numberGuessInput.value === "") {
+    return alert("Error: Valid Number Required");
+  } else if(userNumber < 1 || userNumber > 100) {
+    return alert("Please enter a number between 1 & 100");
+  }
+  lastGuessNumber.innerText = userNumber;
+  disableClearBtn();
+  resetBtn.disabled = false;
+  guessText.style.visibility = "visible";
+  lastGuessWas.style.visibility = "visible";
+
+  if (userNumber === randomNumber) {
+    boom();
+    lastGuessNumber.style.color = "#1abc9c";
+    guessBtn.disabled = true;
+  } else if (userNumber > randomNumber) {
+    guessText.innerText = "That is too high";
+  } else {
+    guessText.innerText = "That is too low";
+  }
+  typeOfInput();
+});
+
+// Clear button function
+clearBtn.addEventListener("click", function() {
+  numberGuessInput.value = "";
+  disableClearBtn();
+});
+
+// Reset button function
 resetBtn.addEventListener("click", function() {
   randomNumber = Math.ceil(Math.random() * 100);
   guessText.className = "normalText";
@@ -62,45 +101,7 @@ resetBtn.addEventListener("click", function() {
   console.log(randomNumber);
 });
 
-// Guess function
-guessBtn.addEventListener("click", function() {
-  var userNumber = parseInt(numberGuessInput.value);
-  if(numberGuessInput.value === "") {
-    return alert("Error: Valid Number Required");
-  } else if(userNumber < 1 || userNumber > 100) {
-    return alert("Please enter a number between 1 & 100");
-  }
+// Function to disable clear btn when input is empty
+numberGuessInput.addEventListener("keyup", function() {
   disableClearBtn();
-  resetBtn.disabled = false;
-  guessText.style.visibility = "visible";
-  lastGuessWas.style.visibility = "visible";
-
-  if (userNumber === randomNumber) {
-    boom();
-    lastGuessNumber.innerText = userNumber;
-    lastGuessNumber.style.color = "#1abc9c";
-    guessBtn.disabled = true;
-  } else if (userNumber > randomNumber) {
-    guessText.innerText = "That is too high";
-    lastGuessNumber.innerText = userNumber;
-  } else {
-    guessText.innerText = "That is too low";
-    lastGuessNumber.innerText = userNumber;
-  }
-  typeOfInput();
 });
-
-// Function to add boom class when answer is correct
-function boom() {
-  guessText.innerText = "BOOM!";
-  guessText.className = "boom";
-}
-
-// Function to set size depending on guess inner test
-function typeOfInput() {
-  if(lastGuessNumber.innerText === "Take a guess...") {
-    lastGuessNumber.style.fontSize = "2em";
-  } else {
-    lastGuessNumber.style.fontSize = "7em";
-  }
-}
