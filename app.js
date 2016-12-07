@@ -92,7 +92,7 @@ guessBtn.addEventListener("click", function() {
   if(numberGuessInput.value === "") {
     return alert("Error: Valid Number Required");
   } else if(userNumber < minNum || userNumber > maxNum) {
-    return alert("Please enter a number between 1 & 100");
+    return alert("Please enter a number between " + minNum + " & " + maxNum);
   }
   lastGuessNumber.innerText = userNumber;
   disableClearBtn();
@@ -104,6 +104,8 @@ guessBtn.addEventListener("click", function() {
     boom();
     lastGuessNumber.style.color = "#1abc9c";
     guessBtn.disabled = true;
+    minNumRange.value = minNum -= 10;
+    maxNumRange.value = maxNum += 10;
   } else if (userNumber > randomNumber) {
     guessText.innerText = "That is too high";
   } else {
