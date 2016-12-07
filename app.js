@@ -5,8 +5,21 @@ var resetBtn = document.getElementById("resetBtn");
 var lastGuessNumber = document.getElementById("lastGuessNumber");
 var guessText = document.getElementById("guessText");
 var lastGuessWas = document.getElementById("lastGuessWas");
+var minNumRange = document.getElementById("minNum");
+var maxNumRange = document.getElementById("maxNum");
+var submitRangeBtn = document.getElementById("submitRange");
 var randomNumber;
+var maxNum;
+var minNum;
 resetBtn.disabled = true;
+
+submitRangeBtn.addEventListener("click", function() {
+  minNum = minNumRange.value;
+  maxNum = maxNumRange.value;
+
+  console.log("Submit clicked " + minNum + " " + maxNum);
+});
+
 
 // HELPER FUNCTIONS
 // Function to hide text on load and reset
