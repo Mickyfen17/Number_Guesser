@@ -23,9 +23,9 @@ function setGame() {
   numberGuessInput.max = maxNum;
   randomNumber = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
   guessText.className = "normalText";
-  lastGuessNumber.innerText = "Take a guess...";
+  lastGuessNumber.innerText = "Take a guess between " + minNum + " & " + maxNum;
   numberGuessInput.value = "";
-  lastGuessNumber.style.color = "#ed5a64";
+  lastGuessNumber.style.color = "black";
   // typeOfInput();
   // textVisible();
   // disableClearBtn();
@@ -66,7 +66,7 @@ function boom() {
 
 // Function to set text size depending on guess inner test
 function typeOfInput() {
-  if(lastGuessNumber.innerText === "Take a guess...") {
+  if(lastGuessNumber.innerText.search("Take") !== -1) {
     lastGuessNumber.style.fontSize = "2em";
   } else {
     lastGuessNumber.style.fontSize = "7em";
@@ -108,8 +108,10 @@ guessBtn.addEventListener("click", function() {
     maxNumRange.value = maxNum += 10;
   } else if (userNumber > randomNumber) {
     guessText.innerText = "That is too high";
+    lastGuessNumber.style.color = "#ed5a64";
   } else {
     guessText.innerText = "That is too low";
+    lastGuessNumber.style.color = "#ed5a64";
   }
   typeOfInput();
 });
@@ -128,7 +130,7 @@ resetBtn.addEventListener("click", function() {
 // Submit button function
 submitRangeBtn.addEventListener("click", function() {
   setGame();
-  if(lastGuessNumber.innerText === "Take a guess...") {
+  if(lastGuessNumber.innerText.search("Take") !== -1) {
     guessText.style.visibility = "hidden";
     lastGuessWas.style.visibility = "hidden";
   }
@@ -141,6 +143,6 @@ numberGuessInput.addEventListener("keyup", function() {
 
 // Style input and buttons
 // Reset game to reset range
-// Display numbers to guess between
+// Display numbers to guess between DONE
 // include instructions for min max range
-// Take a guess text to be black???
+// Take a guess text to be black???  DONE
