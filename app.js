@@ -19,6 +19,8 @@ numberGuessInput.disabled = false;
 function setGame() {
   minNum = parseInt(minNumRange.value);
   maxNum = parseInt(maxNumRange.value);
+  numberGuessInput.min = minNum;
+  numberGuessInput.max = maxNum;
   randomNumber = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
   guessText.className = "normalText";
   lastGuessNumber.innerText = "Take a guess...";
@@ -124,6 +126,10 @@ resetBtn.addEventListener("click", function() {
 // Submit button function
 submitRangeBtn.addEventListener("click", function() {
   setGame();
+  if(lastGuessNumber.innerText === "Take a guess...") {
+    guessText.style.visibility = "hidden";
+    lastGuessWas.style.visibility = "hidden";
+  }
 });
 
 // Function to disable clear btn when input is empty
