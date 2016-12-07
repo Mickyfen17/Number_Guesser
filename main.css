@@ -1,10 +1,11 @@
-/*Body styling*/
+/*BODY STYLING*/
 body {
   background: #FFF;
   margin: 0;
   font-family: 'Raleway', sans-serif;
 }
-/*Header styling*/
+
+/*HEADER STYLING*/
 header, section {
   text-align: center;
 }
@@ -24,6 +25,7 @@ header span {
   font-weight: 300;
   color: #1abc9c;
 }
+
 /*Section styling*/
 section {
   width: 50%;
@@ -41,10 +43,9 @@ section {
   outline: transparent
 }
 
-#numberGuess:focus::-webkit-input-placeholder { 
+#numberGuess:focus::-webkit-input-placeholder {
   color:transparent;
 }
-
 
 .buttons button {
   width: 32%;
@@ -57,12 +58,6 @@ section {
   cursor: pointer;
 }
 
-#lastGuessNumber {
-  margin 0;
-  color: #ed5a64;
-  margin: 20px 0;
-}
-
 #resetBtn {
   width: 70%;
   height: 25px;
@@ -73,18 +68,34 @@ section {
   margin: 15px 5px;
   cursor: pointer;
 }
+button:focus {
+  outline:0;
+}
+
+#resetBtn:hover:enabled ,button:hover:enabled {
+  background: #1abc9c;
+  color: white;
+  border-color: #1abc9c;
+}
 
 #resetBtn:disabled, button:disabled {
   color: #D0D2D3;
   border-color: #D0D2D3;
 }
 
-/*Classes to toggle when game is won*/
-.boom {
-   margin: 10px 0 0 0;
-   font-size: 5em;
-}
 .normalText {
    font-size: 1.5em;
    margin: 18px 0;
+}
+
+#lastGuessNumber {
+  margin 0;
+  color: #ed5a64;
+  margin: 20px 0;
+}
+
+/*CLASS TO BE TOGGLED IN JS*/
+.boom {
+   margin: 10px 0 0 0;
+   font-size: 5em;
 }
