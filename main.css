@@ -103,13 +103,12 @@ button:focus {
 
 .normalText {
    font-size: 1.5em;
-   margin: 18px 0;
+   margin: 12px 0;
 }
 
 #lastGuessNumber {
-  margin 0;
   color: black;
-  margin: 20px 0;
+  margin: 0 auto;
 }
 
 .minMax {
@@ -130,7 +129,7 @@ p {
 
 /*CLASS TO BE TOGGLED IN JS*/
 .boom {
-   margin: 10px 0 0 0;
+   margin: 1px 0 0 0;
    font-size: 5em;
 }
 
