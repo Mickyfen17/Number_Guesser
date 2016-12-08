@@ -1,3 +1,7 @@
+/** {
+  border: 1px solid red;
+}*/
+
 /*BODY STYLING*/
 body {
   background: #FFF;
@@ -28,12 +32,12 @@ header span {
 
 /*Section styling*/
 section {
-  width: 50%;
+  /*width: 50%;*/
   margin: 0 auto;
 }
 
 #numberGuess {
-  width: 65%;
+  /*width: 65%;*/
   height: 25px;
   color: #1abc9c;
   font-size: 20px;
@@ -48,7 +52,7 @@ section {
 }
 
 .buttons button {
-  width: 32%;
+  /*width: 32%;*/
   height: 25px;
   color: #34495e;
   background: white;
@@ -59,7 +63,7 @@ section {
 }
 
 #submitRange, #resetBtn {
-  width: 70%;
+  /*width: 70%;*/
   height: 25px;
   color: #34495e;
   background: white;
@@ -70,7 +74,6 @@ section {
 }
 
 #minNum, #maxNum {
-  width: 32%;
   height: 16px;
   color: #1abc9c;
   font-size: 16px;
@@ -117,4 +120,72 @@ p {
 .boom {
    margin: 10px 0 0 0;
    font-size: 5em;
+}
+
+
+/*MEDIA STYLING*/
+@media screen and (min-width: 320px) {
+  section {
+    width: 90%;
+  }
+  #numberGuess {
+    width: 95%;
+    margin: 0 auto;
+  }
+  #guessBtn, #clearBtn, #resetBtn, #submitRange {
+    width: 99%;
+    margin: 10px auto 0 auto;
+  }
+
+  p {
+    width: 98%;
+    margin: 14px auto;
+  }
+  #minNum {
+    width: 44%;
+    margin: 0 2px 0 0;
+  }
+  #maxNum {
+    width: 44%;
+    margin: 0 0 0 2px;
+  }
+}
+@media screen and (min-width: 450px) {
+  section {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 650px) {
+  section {
+    width: 60%;
+  }
+  #guessBtn, #clearBtn {
+    width: 49%;
+  }
+  #minNum, #maxNum {
+    width: 46%;
+  }
+  #submitRange {
+    width: 99%;
+  }
+}
+@media screen and (min-width: 850px) {
+  section {
+    width: 50%;
+  }
+  #numberGuess {
+    width: 67%;
+  }
+  #guessBtn, #clearBtn {
+    width: 34%;
+  }
+  #resetBtn {
+    width: 70%;
+  }
+  #minNum, #maxNum {
+    width: 33%;
+  }
+  #submitRange {
+    width: 71%;
+  }
 }
