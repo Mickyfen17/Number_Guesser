@@ -30,14 +30,12 @@ header span {
   color: #1abc9c;
 }
 
-/*Section styling*/
+/*SECTION STYLING*/
 section {
-  /*width: 50%;*/
   margin: 0 auto;
 }
 
 #numberGuess {
-  /*width: 65%;*/
   height: 25px;
   color: #1abc9c;
   font-size: 20px;
@@ -52,7 +50,6 @@ section {
 }
 
 .buttons button {
-  /*width: 32%;*/
   height: 25px;
   color: #34495e;
   background: white;
@@ -63,7 +60,6 @@ section {
 }
 
 #submitRange, #resetBtn {
-  /*width: 70%;*/
   height: 25px;
   color: #34495e;
   background: white;
