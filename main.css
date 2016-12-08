@@ -35,6 +35,22 @@ section {
   margin: 0 auto;
 }
 
+label {
+  margin: 0 4px;
+}
+
+#playerOneScore, #playerTwoScore {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 2em;
+  margin: 10px 15px;
+}
+
+#playerAttempt {
+  font-weight: 700;
+  margin: 10px auto;
+}
+
 #numberGuess {
   height: 25px;
   color: #1abc9c;
@@ -113,10 +129,10 @@ button:focus {
 }
 
 .minMax {
-  margin: 40px auto 0 auto;
+  margin: 40px auto 30px auto;
 }
 
-p {
+.minMax p {
   width: 70%;
   margin: 14px auto;
   padding-bottom: 2px;

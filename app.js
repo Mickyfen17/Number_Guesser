@@ -114,6 +114,8 @@ function typeOfInput() {
 window.onload = function() {
   setRange(parseInt(minNumRange.value), parseInt(maxNumRange.value));
   randomNumber = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
+  scoreSection.style.visibility = "hidden";
+  playerAttempt.style.visibility = "hidden";
   textVisible();
   disableClearBtn();
   typeOfInput();
@@ -135,6 +137,7 @@ guessBtn.addEventListener("click", function() {
   guessText.style.visibility = "visible";
   lastGuessWas.style.visibility = "visible";
   guessFunction(userNumber, randomNumber);
+  twoPlayer();
   typeOfInput();
 });
 
@@ -148,12 +151,18 @@ clearBtn.addEventListener("click", function() {
 resetBtn.addEventListener("click", function(e) {
   whichReset = e.target.id;
   setGame();
+  changePlayerText();
+  oneScore = 0;
+  twoScore = 0;
+  playerOneScore.innerText = oneScore;
+  playerTwoScore.innerText = twoScore;
 });
 
 // Submit button function
 submitRangeBtn.addEventListener("click", function(e) {
   whichReset = e.target.id;
   setGame();
+  changePlayerText();
   if(lastGuessNumber.innerText.search("Take") !== -1) {
     guessText.style.visibility = "hidden";
     lastGuessWas.style.visibility = "hidden";
@@ -164,3 +173,67 @@ submitRangeBtn.addEventListener("click", function(e) {
 numberGuessInput.addEventListener("keyup", function() {
   disableClearBtn();
 });
+
+// ********************************************************
+// 2 PLAYER GAME
+
+ // Player2 variables;
+var playerOneBtn = document.getElementById("playOne");
+var playerTwoBtn = document.getElementById("playTwo");
+var playerOneScore = document.getElementById("playerOneScore");
+var playerTwoScore = document.getElementById("playerTwoScore");
+var scoreSection = document.querySelector(".keepScore");
+var playerAttempt = document.getElementById("playerAttempt");
+var oneScore = 0;
+var twoScore = 0;
+
+// Player1 checkbox toggle function
+playerOneBtn.addEventListener("change" , function() {
+  if(playerOneBtn.checked) {
+    console.log("Player1");
+    playerTwoBtn.checked = false;
+    scoreSection.style.visibility = "hidden";
+    playerAttempt.style.visibility = "hidden";
+  }
+});
+
+// Player2 checkbox toggle function
+playerTwoBtn.addEventListener("change" , function() {
+  if(playerTwoBtn.checked) {
+    console.log("Player2");
+    playerOneBtn.checked = false;
+    scoreSection.style.visibility = "visible";
+    playerAttempt.style.visibility = "visible";
+    playerAttempt.innerText = "Player one to guess";
+  }
+});
+
+// Game function
+function twoPlayer() {
+  if(playerTwoBtn.checked && playerAttempt.innerText.search("one") !== -1) {
+    if(guessText.innerText.search("BOOM!") !== -1) {
+      playerAttempt.innerText = "Player one wins!!!";
+      oneScore += 1;
+      playerOneScore.innerText = oneScore;
+    } else {
+      playerAttempt.innerText = "Player two to guess";
+    }
+  } else if(playerTwoBtn.checked && playerAttempt.innerText.search("two") !== -1) {
+    if(guessText.innerText.search("BOOM!") !== -1) {
+      playerAttempt.innerText = "Player two wins!!!";
+      twoScore += 1;
+      playerTwoScore.innerText = twoScore;
+    } else {
+      playerAttempt.innerText = "Player one to guess";
+    }
+  }
+}
+
+// Fucntion to change text on player win
+function changePlayerText() {
+  if(playerAttempt.innerText.search("one wins!!!") !== -1) {
+    playerAttempt.innerText = "Player two to guess";
+  } else if(playerAttempt.innerText.search("two wins!!!") !== -1) {
+    playerAttempt.innerText = "Player one to guess";
+  }
+}

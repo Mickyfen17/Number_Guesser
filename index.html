@@ -11,6 +11,17 @@
     </header>
 
     <section>
+      <div class="gameType">
+        <label><input id="playOne" type="checkbox"  value="playerOneBtn" checked>1 Player Game</label>
+        <label><input id="playTwo" type="checkbox"  value="playerTwoBtn">2 Player Game</label>
+        <div class="keepScore">
+          <h3 id="playerOneScore">0</h3>
+          <h3 id="playerTwoScore">0</h3>
+        </div>
+        <p id="playerAttempt">
+          Player ones to guess....
+        </p>
+      </div>
       <div class="topSection">
         <div class="buttons">
           <input id="numberGuess" type="number" min="1" max="100" placeholder="Enter you guess...">
