@@ -15,19 +15,49 @@ resetBtn.disabled = true;
 numberGuessInput.disabled = false;
 var whichReset; //logs whether reset or submit was clicked
 
+
 // HELPER FUNCTIONS
-// Function set new game
+// Function to set min & max values
+function setRange(min, max) {
+  if(min > max) {
+    alert("Please enter the lowest number in the left field");
+  } else {
+  minNum = min;
+  maxNum = max;
+  }
+}
+
+// Function to set the value on the min & max values
+function setRangeValue(min, max) {
+  minNumRange.value = min;
+  maxNumRange.value = max;
+}
+
+// Function holdig game conditional
+function guessFunction(userNum, randomNum) {
+  if (userNum === randomNum) {
+    boom();
+    lastGuessNumber.style.color = "#1abc9c";
+    guessBtn.disabled = true;
+    setRangeValue(minNum -= 10, maxNum += 10);
+  } else if (userNum > randomNum) {
+    guessText.innerText = "That is too high";
+    lastGuessNumber.style.color = "#ed5a64";
+  } else {
+    guessText.innerText = "That is too low";
+    lastGuessNumber.style.color = "#ed5a64";
+  }
+}
+
+// Function to set new game
 function setGame() {
   console.log(whichReset);
   if(whichReset === "resetBtn") {
-      minNum = 1;
-      maxNum = 100;
+    setRange(1, 100);
   } else {
-      minNum = parseInt(minNumRange.value);
-      maxNum = parseInt(maxNumRange.value);
+    setRange(parseInt(minNumRange.value), parseInt(maxNumRange.value));
   }
-  minNumRange.value = minNum;
-  maxNumRange.value = maxNum;
+  setRangeValue(minNum, maxNum);
   numberGuessInput.min = minNum;
   numberGuessInput.max = maxNum;
   randomNumber = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
@@ -82,8 +112,7 @@ function typeOfInput() {
 // ONLOAD FUNCTION
 // Load random number and style page on load/refresh
 window.onload = function() {
-  minNum = parseInt(minNumRange.value);
-  maxNum = parseInt(maxNumRange.value);
+  setRange(parseInt(minNumRange.value), parseInt(maxNumRange.value));
   randomNumber = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
   textVisible();
   disableClearBtn();
@@ -105,20 +134,7 @@ guessBtn.addEventListener("click", function() {
   resetBtn.disabled = false;
   guessText.style.visibility = "visible";
   lastGuessWas.style.visibility = "visible";
-
-  if (userNumber === randomNumber) {
-    boom();
-    lastGuessNumber.style.color = "#1abc9c";
-    guessBtn.disabled = true;
-    minNumRange.value = minNum -= 10;
-    maxNumRange.value = maxNum += 10;
-  } else if (userNumber > randomNumber) {
-    guessText.innerText = "That is too high";
-    lastGuessNumber.style.color = "#ed5a64";
-  } else {
-    guessText.innerText = "That is too low";
-    lastGuessNumber.style.color = "#ed5a64";
-  }
+  guessFunction(userNumber, randomNumber);
   typeOfInput();
 });
 
