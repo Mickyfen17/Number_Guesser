@@ -83,7 +83,12 @@ section {
   outline: transparent;
   text-align: center;
 }
-
+#maxNum {
+  float: right;
+}
+#minNum {
+  float: left;;
+}
 button:focus {
   outline:0;
 }
@@ -111,9 +116,20 @@ button:focus {
   margin: 20px 0;
 }
 
+.minMax {
+  margin: 40px auto 0 auto;
+}
+
 p {
+  width: 70%;
+  margin: 14px auto;
   padding-bottom: 2px;
   border-bottom: 2px solid #2f4254;
+}
+
+#submitRange {
+  width: 100%;
+  margin: 14px auto 0 auto;
 }
 
 /*CLASS TO BE TOGGLED IN JS*/
@@ -129,25 +145,15 @@ p {
     width: 90%;
   }
   #numberGuess {
-    width: 95%;
+    width: 96%;
     margin: 0 auto;
   }
-  #guessBtn, #clearBtn, #resetBtn, #submitRange {
-    width: 99%;
+  #guessBtn, #clearBtn, #resetBtn {
+    width: 100%;
     margin: 10px auto 0 auto;
   }
-
-  p {
-    width: 98%;
-    margin: 14px auto;
-  }
-  #minNum {
-    width: 44%;
-    margin: 0 2px 0 0;
-  }
-  #maxNum {
-    width: 44%;
-    margin: 0 0 0 2px;
+  #minNum, #maxNum {
+    width: 45%;
   }
 }
 @media screen and (min-width: 450px) {
@@ -162,14 +168,8 @@ p {
   #guessBtn, #clearBtn {
     width: 49%;
   }
-  #minNum, #maxNum {
-    width: 46%;
-  }
-  #submitRange {
-    width: 99%;
-  }
 }
-@media screen and (min-width: 850px) {
+@media screen and (min-width: 800px) {
   section {
     width: 50%;
   }
@@ -182,10 +182,25 @@ p {
   #resetBtn {
     width: 70%;
   }
-  #minNum, #maxNum {
-    width: 33%;
+  .minMax {
+    width: 72%;
+    /*margin: 0 auto;*/
   }
-  #submitRange {
-    width: 71%;
+  #minNum, #maxNum {
+    width: 45%;
+  }
+}
+@media screen and (min-width: 1400px) {
+  section {
+    width: 35%;
+  }
+  #resetBtn {
+    width: 72%;
+  }
+  #numberGuess {
+    width: 69.5%
+  }
+  #guessBtn, #clearBtn {
+    width: 35.5%;
   }
 }
